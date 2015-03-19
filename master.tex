@@ -1,0 +1,70 @@
+\RequirePackage[l2tabu, orthodox]{nag}%check for errors, obsoletion and warn helpfull
+%-------------------
+%Beginn des Kopfbereiches
+%-------------------
+\documentclass[a4paper,12pt,twoside]{scrreprt} 
+
+%We speak german and english
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman,english]{babel}
+
+%Own style definitions:
+\setkomafont{title}{\scshape}
+\addtokomafont{disposition}{\itshape}
+\setlength{\parindent}{2.4ex}
+\setlength{\parskip}{0.7em}
+
+
+%use garamond Font
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[urw-garamond]{mathdesign}
+\usepackage{garamondx}
+\renewcommand{\rmdefault}{ugm}
+%\usepackage{microtype}%for tuned kerning
+
+%Math stuff
+\usepackage{amsmath}
+\usepackage{pgfplots}
+%Handy packages & Co
+\usepackage{color}
+\usepackage{blindtext}
+\usepackage{setspace}
+\usepackage{csquotes}
+\usepackage{multicol}
+\usepackage{units}
+\usepackage{siunitx}
+\usepackage{physics}
+
+%customize toc
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\numberwithin{equation}{chapter}
+
+
+\usepackage[
+    backend=biber,
+    style=numeric,
+    natbib=true,
+    url=false, 
+    doi=true,
+    eprint=false
+]{biblatex}
+\usepackage[hidelinks,pdfusetitle]{hyperref}
+
+\addbibresource{refs.bib}
+%Own Commands
+\newcommand{\p}{\par}
+\renewcommand{\times}{\cdot}
+\newcommand{\ddiff}[2]{\ensuremath{\frac{d\! #1}{d\! #2}}}
+\newcommand{\pdiff}[2]{\ensuremath{\frac{\partial\! #1}{\partial\! #2}}}
+\newcommand{\euler}[1]{\ensuremath{\pdiff{#1}{t}+\left(\vec{v}\times\vec{\nabla}\right)#1}}
+
+
+
+
+\begin{document}
+\pagenumbering{roman}
+\input{mainfile}
+
+\end{document}

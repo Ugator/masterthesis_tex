@@ -1,0 +1,42 @@
+
+%Beginn der Titelseite
+%\begin{titlepage}
+\subject{Masterthesis}
+\titlehead{
+\begin{multicols}{2} 
+Meteorologisches Institut\\
+Universität Bonn
+\begin{flushright}
+National Center for Atmospheric Reasearch\\
+Boulder  Colorado
+\end{flushright}
+\end{multicols}
+}
+
+\title{Evaluation of the COSMO- and WRF-Model by Application of the Initial Tendency Method}
+\author{Florian Losch}
+\date{September 30th, 2015}
+\publishers{Mentors: Dr. Petra Friederichs and Dr. Judith Berner}
+\maketitle
+\KOMAoptions{titlepage=false}
+\thispagestyle{empty}
+\vspace*{8.5cm}
+\begin{center}
+\selectlanguage{ngerman}
+\abstract{\blindtext}
+\end{center}
+%}
+\KOMAoptions{titlepage=true}
+\selectlanguage{english}
+\abstract{\blindtext}%}
+\tableofcontents{}
+%\begin{multicols}{2}
+%\multicoltolerance = 100
+
+\input{theory}
+
+\input{application}
+
+\printbibliography 
+
+%\end{multicols}

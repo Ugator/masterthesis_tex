@@ -1,0 +1,43 @@
+\chapter{Theory}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\section{Numerical Weather Prediction Model}
+\p
+Modern weather prediction always bases on use of output from Numerical Weather Prediction~(\emph{NWP}) models. To improve the quality of these predictions, one has to assess possible errors in the NWP-models. First the procedure of a NWP-model will be described.\cite{grandy2004time}
+\p
+To initialize the numerical model, information about the current state of the atmosphere (and other modelled systems) is needed. These initial values have to be given in the \glqq model space\grqq. Meaning, that all values describing the system are needed in the way the model would produce them on every grid point.
+\p
+Due to practical reasons, there can't take place measurements of the state of the atmosphere on every grid point in the 3D-Atmosphere multiple times a day for every weather forecast. To introduce a possibility to start a NWP-model nevertheless, the process of data assimilation is used.
+\subsection{Data Assimilation}
+The solution is $\SI{244}{\kelvin\per\second\tothe{3}}$.
+\p
+Main objective of the data assimilation process is to find a model state, for that holds, that the forecast of the NWP-model will be closest possible to the physical truth. This objective differs from the task, to find a model state closest to the current/initial, true atmospheric state.
+\p
+Another problem addressed by the data assimilation process is the presence of measurement errors. Already small errors in a single measurement can imply extensive imbalances and thereby erroneous processes in the forecast. Therefore it is important to damp the influence of any single measurement in favor of correct balancing and hence a correct representation of physical processes in the model.
+\p 
+To realise both objectives of data assimilation, a model run is started about one hour before the forecast is to be produced. As initial condition a forecast for that point in time is used. In the timeframe between start of the model run and start of the forecast process, the data assimilation takes place. During this process all available measurements are beeing incorporated in the model. The way this is done depends on the specific data assimilation scheme choosen. 
+\p
+One particular assimilation scheme is the \emph{observation-nudging}. This scheme is used in the COSMO-model. In this scheme the incorporation is realised by a change of the prognostic tendency produced by the model during forward integration. The change for any observed variable $\phi(x,t)$ by $k$th observation is given by(\cite{cosmo_da}):
+\begin{equation}
+\frac{\partial}{\partial\!t}\phi(\vb{x},t) = F(\phi,\vb{x},t)+ G_\phi \times \sum_{k_{(obs)}}W_k(\vb{x},t)\times \qty[\phi_k^{obs}-\phi(x_k,t)] \label{eq:cosmo_nudging}
+\end{equation}
+\p
+Where $F$ is the tendency produced by model dynamics and physics, $G$ a variable dependend constant, $W_k$ a observation depend weight decreasing with distance from the observation in space and time and $\phi^{obs}$ the observed value. By this procedure the model is forced to stay close to observated values where these are available but can develop free where no information is known.
+\p
+\textcolor{red}{TBD: Data Assimilation in WRF: ETKF, hybrid, 4D-Var, 3D-Var?}
+\section{Model Error}
+While there is obvious description of what a model error is, namely a discreptance between the forecast and the actual physical development, there are different concepts of describing model errors.
+\p 
+One insightful way of describing model errors follows \cite{judd2008geometry}. Judd describes different types of errors by their origin, neglecting whether they're distinguishable later. He also describes the data assimilation process not as independent, but as part of the model.
+\subsection{Initialisation Error}
+One widely known source of error is error in the initial data. Often it is assumed, that uncertainty of the initial state will grow even in a perfect model exponentially with time. \cite{smith1999uncertainty} however finds, that this behaviour will not always be observed. In dissipative systems 
+\subsection{Spin Up Error}
+\subsection{Tendency Error}
+
+\section{Reforcasts}
+\section{Initial Tendency Method}
+\section{COSMO Model}
+\section{WRF Model}
+
+
+\chapter{Methodology}

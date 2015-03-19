@@ -1,0 +1,30 @@
+% This file was created with JabRef 2.10.
+% Encoding: UTF-8
+
+
+@Electronic{cosmo_da,
+  Title                    = {A Description of the Nonhydrostatic Regional COSMO-Model Part III: Data Assimilation},
+  Author                   = {C. Schraff, R. Hess},
+  Month                    = {Feb},
+  Organization             = {Deutscher Wetterdienst},
+  Url                      = {http://cosmo-model.org/content/model/documentation/core/cosmoAssim.pdf},
+  Year                     = {2012},
+
+  Owner                    = {florian},
+  Timestamp                = {2015.02.21}
+}
+
+@Article{grandy2004time,
+  Title                    = {Time evolution in macroscopic systems. II. The entropy},
+  Author                   = {Grandy Jr, WT},
+  Journal                  = {Foundations of Physics},
+  Year                     = {2004},
+  Number                   = {1},
+  Pages                    = {21--57},
+  Volume                   = {34},
+
+  Owner                    = {florian},
+  Publisher                = {Springer},
+  Timestamp                = {2015.02.19}
+}
+
