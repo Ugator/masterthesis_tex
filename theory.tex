@@ -18,14 +18,14 @@ To realise both objectives of data assimilation, a model run is started about on
 \p
 One particular assimilation scheme is the \emph{observation-nudging}. This scheme is used in the COSMO-model. In this scheme the incorporation is realised by a change of the prognostic tendency produced by the model during forward integration. The change for any observed variable $\phi(x,t)$ by $k$th observation is given by(\cite{cosmo_da}):
 \begin{equation}
-\frac{\partial}{\partial\!t}\phi(\vb{x},t) = F(\phi,\vb{x},t)+ G_\phi \times \sum_{k_{(obs)}}W_k(\vb{x},t)\times \qty[\phi_k^{obs}-\phi(x_k,t)] \label{eq:cosmo_nudging1}
+\frac{\partial}{\partial\!t}\phi(\vb{x},t) = F(\phi,\vb{x},t)+ G_\phi \ftimes \sum_{k_{(obs)}}W_k(\vb{x},t)\ftimes \qty[\phi_k^{obs}-\phi(x_k,t)] \label{eq:cosmo_nudging1}
 \end{equation}
 \p
 Where $F$ is the tendency produced by model dynamics and physics, $G$ a variable dependend constant, $W_k$ a observation depend weight decreasing with distance from the observation in space and time and $\phi^{obs}$ the observed value. By this procedure the model is forced to stay close to observated values where these are available but can develop free where no information is known.
 \p
 If the model physics and dynamics \(F(\cdots)\) were zero, the assimilation terms would produce a exponential convergence of \(\phi\) to \(\phi^{obs}\). To guarantee, that the modelled system is still conform to the physical model, the assimilation term should be small compared to the model physics and dynamics. To ensure this, $W_k$ is being adjusted with the formula:
 \begin{equation} 
-W_k=\frac{w_k+1}{\sum_j w_j+1}\times w_k \label{eq:cosmo_nudging2}
+W_k=\frac{w_k+1}{\sum_j w_j+1}\ftimes w_k \label{eq:cosmo_nudging2}
  \end{equation}
 \p
 Where the individual measurements weight $w_k$ is being limited by the utilization of the sum over all influencing weights $w_j$
@@ -78,11 +78,57 @@ The initial data used from the HeRZ-reanalyses are in this work considered as fr
 \p
 Objective of the evaluation method used in this work is to evaluate the models without the use of additional measurements. This kind of evaluation has to verify intrinsic physical properties or the general behaviour of the model.
 \p
-Under the assumption of a stationary climate one can assume, that statistically all variables have to be constant. This is expectably true for extensive or intensive variables. The only commonly used variable that is bar climatological changes  not constant is entropy. Entropy production however is reasonably constant.
+Under the assumption of a stationary climate one can assume, that statistically all variables have to be constant. This is expectably true for extensive or intensive variables.
+\p
+The time scales for which different variables in the climate system are quasi constant can become very large. 
 \section{COSMO Model}
 \section{WRF Model}
 
 
 \chapter{Methodology}
+\section{Entropy Production}
+\subsection{Entropy Temperature}
+\begin{equation*}
+\text{mixing ratio: }r^t=r^1+r^2+r^3
+\end{equation*}
+\begin{equation*}
+c^*=c_{p0}+c_2r^t
+\end{equation*}
+\begin{equation*}
+a_{21}=R_1T\ln \frac{p^{21}}{p^1}
+\end{equation*}
+\begin{equation*}
+a_{32}=R_1T\ln \frac{p^{31}}{p^{21}}
+\end{equation*}
+\begin{equation}
+\Theta_s=T\qty(\frac{p^0}{p_0})^{-\frac{R_0}{c^*}}\ftimes \exp\qty[\frac{(l_{21}+a_{21})r^1}{c^*T}-\frac{(l_{32}+a_{32})r^3}{c^*T}]
+\end{equation}
+\subsection{Entropy Production}
+\begin{equation}
+\dv{s}{t}=m^0c^*\dv{\ln\Theta_s}{t}
+\end{equation}
+\section{Richardson Number}
+\begin{equation*}
+\text{Brunt-Väisälä frequency: }N=\sqrt{\frac{g}{\Theta}\dv{\Theta}{z}}
+\end{equation*}
+\begin{equation}
+\Ri=\frac{N^2}{\qty(\dv{u}{z})^2}
+\end{equation}
+\section{Helicity}
+\begin{equation}
+H=\int_V \va{v_h}\ftimes\curl{\va{v_h}}
+\end{equation}
 \section{COSMO}
 \section{WRF}
+\subsection{Physics Parametrizations}
+%\begin{table}
+\begin{tabular}{lr}
+Microphysics       & New Thompson et al incl. Graupel, rain number density\\
+Longwave Radiation & RRTMG (RRTM + random cloud overlap)\\
+Shortwave Radiation& RRTMG\\
+Clay Surface Layer & Eta similarity (Monin Obukhov)\\
+Surface Layer      & Noah land surface model\\
+Boundary layer     & Mellor-Yamada-Janjic scheme, 1D TKE + local vert. mixing\\
+Cumulus param      & Tiedtke scheme (coarse resolution only)\\
+\end{tabular}
+%\end{table}
