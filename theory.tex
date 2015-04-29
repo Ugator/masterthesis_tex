@@ -8,13 +8,14 @@ Modern weather prediction always bases on use of output from Numerical Weather P
 To initialize the numerical model, information about the current state of the atmosphere (and other modelled systems) is needed. These initial values have to be given in the \glqq model space\grqq. Meaning, that all values describing the system are needed in the way the model would produce them on every grid point.
 \p
 Due to practical reasons, there can't take place measurements of the state of the atmosphere on every grid point in the 3D-Atmosphere multiple times a day for every weather forecast. To introduce a possibility to start a NWP-model nevertheless, the process of data assimilation is used.
-\subsection{Data Assimilation}
+\section{Data Assimilation}
 \p
 Main objective of the data assimilation process is to find a model state, for that holds, that the forecast of the NWP-model will be closest possible to the physical truth. This objective differs from the task, to find a model state closest to the current/initial, true atmospheric state.
 \p
 Another problem addressed by the data assimilation process is the presence of measurement errors. Already small errors in a single measurement can imply extensive imbalances and thereby erroneous processes in the forecast. Therefore it is important to damp the influence of any single measurement in favor of correct balancing and hence a correct representation of physical processes in the model.
 \p 
 To realise both objectives of data assimilation, a model run is started about one hour before the forecast is to be produced. As initial condition a forecast for that point in time is used. In the timeframe between start of the model run and start of the forecast process, the data assimilation takes place. During this process all available measurements are beeing incorporated in the model. The way this is done depends on the specific data assimilation scheme choosen. 
+\subsection{Observation Nudging (COSMO)}
 \p
 One particular assimilation scheme is the \emph{observation-nudging}. This scheme is used in the COSMO-model. In this scheme the incorporation is realised by a change of the prognostic tendency produced by the model during forward integration. The change for any observed variable $\phi(x,t)$ by $k$th observation is given by(\cite{cosmo_da}):
 \begin{equation}
@@ -33,6 +34,11 @@ Where the individual measurements weight $w_k$ is being limited by the utilizati
 An advantage of this method is, that measurements can flexibly be added to the assimilation process whenever they are available while other methods are only able to incorporate additional information at fixed times.
 \p
 For nudging based assimilation the measured \glqq truth\grqq\ has to been known in model space (see \(\phi\) in \ref{eq:cosmo_nudging1}), thus no satellite data can effectively be used in data assimilation.
+\p
+Also the incorporation of radar precipitation data needs special procedure called \emph{latent heat nudging}. It would not be effective to just add the precipitation observed where the model is not producing it, as the precipitation would just fall to the ground without adjusting the model dynamics effectively. This would just be fixing the symptoms but not the cause of a lack of precipitation.
+\p
+To fix the cause of a lack or excess of precipitation latent heat is added or removed from the lower bound of clouds. This will then increase or reduce vertical motion in the cloud and then cause an adjustment of the precipitation rate in the needed direction.
+\subsection{WRF}
 \p
 \textcolor{red}{TBD: Data Assimilation in WRF: ETKF, hybrid, 4D-Var, 3D-Var?}
 \section{Model Error}
@@ -80,11 +86,64 @@ Objective of the evaluation method used in this work is to evaluate the models w
 \p
 Under the assumption of a stationary climate one can assume, that statistically all variables have to be constant. This is expectably true for extensive or intensive variables.
 \p
-The time scales for which different variables in the climate system are quasi constant can become very large. 
+The time scales for which different variables in the climate system are quasi constant can become very large. Also variables that vary with the diurnal cycle would cause problems, if the diurnal cycle isn't resolved by the model starting times. If the model is for example only started at the local morning, the tendencies for temperature would always be positive whereas this doesn't point to erroneous behaviour of the model. It is important to note that the diurnal cycle might not be resolved by a 6-horal sampling.
+\p
+Due to this for this evaluation known tendencies of all variables will be subtracted before averaging. To determine the known tendencies the reanalysis from which the model is started are used to calculate the real background tendencies.
+\p
+
+For a Variable $\Phi$ let $\Phi^R_0$ be the reanalysis field from which the model is started and $\Phi^R_1$ the next reanalysis field available after a time of $\Delta T$.
+\p
+ The forecast field for $t$ seconds after $\Phi^R_0$ is denoted $\Phi^M(t)$. The model time step numbered $0\leq i\leq n \in \mathbb{N}$ is $\Delta t$ seconds. Therefore model fields are available for $t=i\Delta t$ and called $\Phi^M_i$.
+ \p
+The Background tendency is $\dot{\Phi}^R=\nicefrac{(\Phi^R_1-\Phi^R_0)}{\Delta T}$ if $i<\nicefrac{\Delta T}{\Delta t}$, elsewise $\Phi^R_{2,3,\cdots}$ will be used such that the time step $i$ is in between the used reanalyses.
+ The model tendency $\dot{\Phi}_i$ exclusive the background tendency between the time steps $i$ and $i+1$ is then calculated by:
+\begin{equation}
+\dot{\Phi}_i=\frac{\Phi^M_{i+1}-\Phi^M_i}{\Delta t}-\dot{\Phi}^R
+\end{equation}
+\p
+Occasionally due to practical reasons some model tendencies $\dot{\Phi}_i$ to $\dot{\Phi}_j$ will be examined only averaged:
+\begin{equation}
+\dot{\Phi}_{ij}=\frac{1}{j-i}\sum_{k=i}^{j-1}\dot{\Phi}_k=\frac{\Phi^M_{j}-\Phi^M_i}{(j-i)\Delta t}-\dot{\Phi}^R\qqtext{with:} i<j\leq n
+\end{equation}
+\p
+For some variables the model can be configured or adapted to add different tendency terms, that are normally are integrated, directly to the model output. This then allows for another way to compute $\dot{\Phi}_i$:
+\begin{equation}
+\dot{\Phi}_i=\sum_k \dot{\varphi}^M_k
+\end{equation}
+\p
+Here $\dot{\varphi}^M_k$ are the different model tendencies from the dynamics and physics of the NWP. It is important that all processes are included for this equation to hold.
+
 \section{COSMO Model}
+\p
+Strict licensing prohibits free use for commercial purposes.
+
+Developed mainly by German weather service (DWD) together with other institutions in the COSMO consortium.
+
+\subsection{Coordinate System}
+\subsubsection{Horizontal}
+\p
+Spherical coordinates with rotated north pole.
+\subsubsection{Vertical}
+\p
+$\cdots$
+\subsection{Sound Waves}
+\p
+Fast time stepping...
 \section{WRF Model}
+\p
+Public domain license.
 
-
+Developed mainly at NCAR, but everyone is free to participate.
+\subsection{Coordinate System}
+\subsubsection{Horizontal}
+\p
+Cartesian, lambert conformal projection
+\subsubsection{Vertical}
+\p
+$\cdots$
+\subsection{Sound Waves}
+\p
+Fast time stepping...
 \chapter{Methodology}
 \section{Entropy Production}
 \subsection{Entropy Temperature}
@@ -101,7 +160,7 @@ a_{21}=R_1T\ln \frac{p^{21}}{p^1}
 a_{32}=R_1T\ln \frac{p^{31}}{p^{21}}
 \end{equation*}
 \begin{equation}
-\Theta_s=T\qty(\frac{p^0}{p_0})^{-\frac{R_0}{c^*}}\ftimes \exp\qty[\frac{(l_{21}+a_{21})r^1}{c^*T}-\frac{(l_{32}+a_{32})r^3}{c^*T}]
+\Theta_s=T\qty(\frac{p^0}{p_0})^{-\frac{R_0}{c^*}}\hspace{-0.6cm}\ftimes \exp\qty[\frac{(l_{21}+a_{21})r^1}{c^*T}-\frac{(l_{32}+a_{32})r^3}{c^*T}]
 \end{equation}
 \subsection{Entropy Production}
 \begin{equation}
