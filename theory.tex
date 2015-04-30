@@ -14,17 +14,17 @@ Main objective of the data assimilation process is to find a model state, for th
 \p
 Another problem addressed by the data assimilation process is the presence of measurement errors. Already small errors in a single measurement can imply extensive imbalances and thereby erroneous processes in the forecast. Therefore it is important to damp the influence of any single measurement in favor of correct balancing and hence a correct representation of physical processes in the model.
 \p 
-To realise both objectives of data assimilation, a model run is started about one hour before the forecast is to be produced. As initial condition a forecast for that point in time is used. In the timeframe between start of the model run and start of the forecast process, the data assimilation takes place. During this process all available measurements are beeing incorporated in the model. The way this is done depends on the specific data assimilation scheme choosen. 
+To realize both objectives of data assimilation, a model run is started about one hour before the forecast is to be produced. As initial condition a forecast for that point in time is used. In the timeframe between start of the model run and start of the forecast process, the data assimilation takes place. During this process all available measurements are being incorporated in the model. The way this is done depends on the specific data assimilation scheme choosen. 
 \subsection{Observation Nudging (COSMO)}
 \p
-One particular assimilation scheme is the \emph{observation-nudging}. This scheme is used in the COSMO-model. In this scheme the incorporation is realised by a change of the prognostic tendency produced by the model during forward integration. The change for any observed variable $\phi(x,t)$ by $k$th observation is given by(\cite{cosmo_da}):
+One particular assimilation scheme is the \emph{observation-nudging}. This scheme is used in the COSMO-model. In this scheme the incorporation is realized by a change of the prognostic tendency produced by the model during forward integration. The change for any observed variable $\phi(x,t)$ by $k$th observation is given by(\cite{cosmo_da}):
 \begin{equation}
 \frac{\partial}{\partial\!t}\phi(\vb{x},t) = F(\phi,\vb{x},t)+ G_\phi \ftimes \sum_{k_{(obs)}}W_k(\vb{x},t)\ftimes \qty[\phi_k^{obs}-\phi(x_k,t)] \label{eq:cosmo_nudging1}
 \end{equation}
 \p
-Where $F$ is the tendency produced by model dynamics and physics, $G$ a variable dependend constant, $W_k$ a observation depend weight decreasing with distance from the observation in space and time and $\phi^{obs}$ the observed value. By this procedure the model is forced to stay close to observated values where these are available but can develop free where no information is known.
+Where $F$ is the tendency produced by model dynamics and physics, $G$ a variable dependent constant, $W_k$ a observation depend weight decreasing with distance from the observation in space and time and $\phi^{obs}$ the observed value. By this procedure the model is forced to stay close to observated values where these are available but can develop free where no information is known.
 \p
-If the model physics and dynamics \(F(\cdots)\) were zero, the assimilation terms would produce a exponential convergence of \(\phi\) to \(\phi^{obs}\). To guarantee, that the modelled system is still conform to the physical model, the assimilation term should be small compared to the model physics and dynamics. To ensure this, $W_k$ is being adjusted with the formula:
+If the model physics and dynamics \(F(\cdots)\) were zero, the assimilation terms would produce a exponential convergence of \(\phi\) to \(\phi^{obs}\). To guarantee, that the modeled system is still conform to the physical model, the assimilation term should be small compared to the model physics and dynamics. To ensure this, $W_k$ is being adjusted with the formula:
 \begin{equation} 
 W_k=\frac{w_k+1}{\sum_j w_j+1}\ftimes w_k \label{eq:cosmo_nudging2}
  \end{equation}
@@ -33,33 +33,38 @@ Where the individual measurements weight $w_k$ is being limited by the utilizati
 \p
 An advantage of this method is, that measurements can flexibly be added to the assimilation process whenever they are available while other methods are only able to incorporate additional information at fixed times.
 \p
-For nudging based assimilation the measured \glqq truth\grqq\ has to been known in model space (see \(\phi\) in \ref{eq:cosmo_nudging1}), thus no satellite data can effectively be used in data assimilation.
+For nudging based assimilation the measured \glqq truth\grqq\ has to been known in model space (see \(\phi\) in \eqref{eq:cosmo_nudging1}), thus no satellite data can effectively be used in data assimilation.
 \p
 Also the incorporation of radar precipitation data needs special procedure called \emph{latent heat nudging}. It would not be effective to just add the precipitation observed where the model is not producing it, as the precipitation would just fall to the ground without adjusting the model dynamics effectively. This would just be fixing the symptoms but not the cause of a lack of precipitation.
 \p
 To fix the cause of a lack or excess of precipitation latent heat is added or removed from the lower bound of clouds. This will then increase or reduce vertical motion in the cloud and then cause an adjustment of the precipitation rate in the needed direction.
+\p
+While the observation nudging scheme is rather pragmatically designed it shows best performance in operational weather forecasts due to its high adjustability. Also the forecasting framework is easier to set up. Operationally the model is always in \glqq data assimilation\grqq mode, and as soon as no observations are available anymore the model will automatically be running as free model -- the second righthand term in \eqref{eq:cosmo_nudging1} will be zero.
+\p
+Also this scheme allows the model during data assimilation to move to its attractor, and therefore minimizing spin up errors (see section \ref{sec:SpinUp}). 
 \subsection{WRF}
 \p
 \textcolor{red}{TBD: Data Assimilation in WRF: ETKF, hybrid, 4D-Var, 3D-Var?}
 \section{Model Error}
-While there is obvious description of what a model error is, namely a discreptance between the forecast and the actual physical development, there are different concepts of describing model errors.
+While there is obvious description of what a model error is, namely a discrepancy between the forecast and the actual physical development, there are different concepts of describing model errors.
 \p
 From a perspective of model development there are three kinds of errors. First of all there are approximations and neglections consciously implemented into the numerical model. These errors are taken into account to allow computability in a certain timeframe as the forecast always has to be computed faster than the forecasted event takes place. A second source of error are uncertainties in parameters, boundary and initial data, and measurement errors. These errors are thought to be countered by data assimilation and ensemble forecasting. The third source of errors are implementation errors. This is expressed by differences between the formal \glqq numerical model\grqq\ and the model actually implemented by the source code.
 \p                                
 One insightful way of describing model errors follows \cite{judd2008geometry}. Judd describes different types of errors by their origin, neglecting whether they're distinguishable later. He also describes the data assimilation process not as independent, but as part of the model.
 \subsection{Initialisation Error}
 \p
-One widely known source of error is error in the initial data. Often it is assumed, that uncertainty of the initial state will grow even in a perfect model exponentially with time. \cite{smith1999uncertainty} however finds, that this behaviour will not always be observed. 
-\p In dissipative systems \emph{sometimes} a initialisation error will be dissipated and the model trajectory will converge to the real one. However \emph{statistically} the assumption of an exponential error growth due to initialisation errors still holds.
+One widely known source of error is error in the initial data. Often it is assumed, that uncertainty of the initial state will grow even in a perfect model exponentially with time. \cite{smith1999uncertainty} however finds, that this behavior will not always be observed. 
+\p In dissipative systems \emph{sometimes} a initialization error will be dissipated and the model trajectory will converge to the real one. However \emph{statistically} the assumption of an exponential error growth due to initialization errors still holds.
 \p
-Another implication of the exponential growth is, that for a certain time after the beginning the errors due to initialisation errors will be small compared to other errors.
+Another implication of the exponential growth is, that for a certain time after the beginning the errors due to initialization errors will be small compared to other errors.
 \subsection{Spin Up Error}
+\label{sec:SpinUp}
 \p
 Both numerical models as the physical climate are describable by a multidimensional attractor \citep{judd2008geometry}. For the physical climate this attractor implies a recurrence time of $\order{\SI{e30}{\years}}$ for which the climate system would return to a similar state. The spatial dimension of this attractor is with $\order{\textit{\numrange{e5}{e6}}}$ also too big to be imagined or visualized.
 \p
 It is observed, that numerical weather models will be strongly attracted to an attractor, which might differ from the physical climate attractor. If a difference between the physical and the model attractor exist and the model is initialized in a state lying on the physical attractor, in the beginning of the simulation the model will move from the physical attractor to the intrinsic attractor of the numerical model, resulting in erroneous tendencies called \emph{spin up}.
 \p
-Spin up errors can also occur due to artificial different treatment of the first time steps of numerical modelling. This can be implemented as simplification or by error.
+Spin up errors can also occur due to artificial different treatment of the first time steps of numerical modeling. This can be implemented as simplification or by error.
 \p
 Spin up errors can be reduced by using appropriate data assimilation. To minimize the time model output is influenced by spin up it's important to use the same model system in data assimilation as will be used for simulation. Also model configuration (choice of parametrizations) has to be equal. Otherwise the spin up process can need more then several days, dominating the whole forecasting time. 
 \subsection{Tendency Error}
@@ -71,9 +76,9 @@ As this kind of error often implies a breaking of conservation laws of energy or
 Weather forecast models with higher resolution often don't run for more than a few days therefore small tendency errors might not grow large or are indistinguishable from spin up effects.
 \section{Reforecasts}
 \p
-One complication in the evaluation process of numerical weather model used in production is inconsistency over time. For the production use of weather services mistakes in the model are fixed as soon as possible. However this leads incomparability of model behaviour over longer time scales.
+One complication in the evaluation process of numerical weather model used in production is inconsistency over time. For the production use of weather services mistakes in the model are fixed as soon as possible. However this leads incomparability of model behavior over longer time scales.
 \p
-To develop a deeper understanding of model behaviour \emph{reforecasts} are used. Therefor the model is started from initialization states in the past and a forecast for the past is produced. This method differs from a reanalysis as here during the forecast no measurements are incorporated into the model.
+To develop a deeper understanding of model behavior \emph{reforecasts} are used. Therefor the model is started from initialization states in the past and a forecast for the past is produced. This method differs from a reanalysis as here during the forecast no measurements are incorporated into the model.
 \p
 By freezing on a specific model configuration and re-evaluation of free forecasts from reanalysis initial data, one can investigate the attractor of the numerical model.
 \p
@@ -82,11 +87,11 @@ There are different applications imaginable for utilizing reforecasts for model 
 The initial data used from the HeRZ-reanalyses are in this work considered as free from systematic biases. With this assumption no errors can be found, that are not constrainable by measurements during data assimilation. 
 \section{Initial Tendency Method}
 \p
-Objective of the evaluation method used in this work is to evaluate the models without the use of additional measurements. This kind of evaluation has to verify intrinsic physical properties or the general behaviour of the model.
+Objective of the evaluation method used in this work is to evaluate the models without the use of additional measurements. This kind of evaluation has to verify intrinsic physical properties or the general behavior of the model.
 \p
 Under the assumption of a stationary climate one can assume, that statistically all variables have to be constant. This is expectably true for extensive or intensive variables.
 \p
-The time scales for which different variables in the climate system are quasi constant can become very large. Also variables that vary with the diurnal cycle would cause problems, if the diurnal cycle isn't resolved by the model starting times. If the model is for example only started at the local morning, the tendencies for temperature would always be positive whereas this doesn't point to erroneous behaviour of the model. It is important to note that the diurnal cycle might not be resolved by a 6-horal sampling.
+The time scales for which different variables in the climate system are quasi constant can become very large. Also variables that vary with the diurnal cycle would cause problems, if the diurnal cycle isn't resolved by the model starting times. If the model is for example only started at the local morning, the tendencies for temperature would always be positive whereas this doesn't point to erroneous behavior of the model. It is important to note that the diurnal cycle might not be resolved by a 6-horal sampling.
 \p
 Due to this for this evaluation known tendencies of all variables will be subtracted before averaging. To determine the known tendencies the reanalysis from which the model is started are used to calculate the real background tendencies.
 \p
