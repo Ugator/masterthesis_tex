@@ -4,6 +4,17 @@
 \end{equation}
 \section{COSMO}
 
+\begin{tikzpicture}
+\begin{axis}[
+title=Tendency Temperature,
+xlabel=Tendency in K/s,
+ylabel=Model Level,
+]
+\addplot[blue] table {./data/vert/T_ats_mean.csv};
+\end{axis}
+\end{tikzpicture}
+
+
 \section{WRF}
 \blindtext
 \chapter{Results}

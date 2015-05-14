@@ -42,9 +42,21 @@ To fix the cause of a lack or excess of precipitation latent heat is added or re
 While the observation nudging scheme is rather pragmatically designed it shows best performance in operational weather forecasts due to its high adjustability. Also the forecasting framework is easier to set up. Operationally the model is always in \glqq data assimilation\grqq mode, and as soon as no observations are available anymore the model will automatically be running as free model -- the second righthand term in \eqref{eq:cosmo_nudging1} will be zero.
 \p
 Also this scheme allows the model during data assimilation to move to its attractor, and therefore minimizing spin up errors (see section \ref{sec:SpinUp}). 
-\subsection{WRF}
+\subsection{Ensemble Kalman Filter (WRF)}
 \p
-\textcolor{red}{TBD: Data Assimilation in WRF: ETKF, hybrid, 4D-Var, 3D-Var?}
+Another approach of data assimilation is chosen in the WRF data assimilation program called \emph{DART}. The Ensemble Kalman Filter is based on the original by Kalman introduced Kalman Filter.
+\p 
+The Kalman Filter works on linear systems. The initial conditions are not exactly known but their probability distribution is. Also measurements after a certain time and their error distribution are known. The Kalman Filter then proceeds in two steps.
+\begin{itemize}
+\item First from the initial condition a forecast is produced. Because of the linearity the propagation of the uncertainty is feasible computable. The result is called the bayesian prior.
+\item Second the measurements and their uncertainty, called bayesian posterior, are taken into account.  Utilizing Bayes' Theorem both the prior and the posterior are combined to the assimilation.
+\end{itemize}
+\p
+From this assimilation output now again a forecast can be started, which then in combination with new measurements allows to \emph{cycle} the assimilation scheme. For systems with normal distributed errors, this scheme is known to produce the optimal solution.
+\p
+In numerical weather prediction however the dynamic system is very strongly not linear. This makes it infeasible to predict the propagation of uncertainty with time as the Fokker-Planck equations would have to be solved. The usage of the Ensemble Kalman Filter avoids this tedious task at the cost of losing the property of optimal solution.
+\p
+The Ensemble Kalman Filter utilizes a bootstrapping method to simulate a solution of the Fokker-Planck equations. To achieve this, the initial uncertainty is represented by a sample $\order{\textit{\numrange{50}{100}}}$ of initial conditions whose variance is maximized along the Lyapunov vectors with biggest Lyapunov exponents.
 \section{Model Error}
 While there is obvious description of what a model error is, namely a discrepancy between the forecast and the actual physical development, there are different concepts of describing model errors.
 \p

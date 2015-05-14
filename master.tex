@@ -58,6 +58,7 @@
 
 \addbibresource{refs.bib}
 %Own Commands
+%\newcommand{\data}{./data}
 \newcommand{\Ri}{R\!i}
 \newcommand{\p}{\par}
 \newcommand{\ftimes}{\cdot}
@@ -65,8 +66,9 @@
 \newcommand{\pdiff}[2]{\ensuremath{\frac{\partial\! #1}{\partial\! #2}}}
 \newcommand{\euler}[1]{\ensuremath{\pdiff{#1}{t}+\left(\vec{v}\times\vec{\nabla}\right)#1}}
 
-
-
+%Begin pgfplot stuff
+\usepackage{pgfplots}
+%\pgfplotsset{compat=1.12}
 
 \begin{document}
 \pagenumbering{roman}
