@@ -97,6 +97,7 @@ By freezing on a specific model configuration and re-evaluation of free forecast
 There are different applications imaginable for utilizing reforecasts for model evaluation. [?] compared the model output to measurements and [?] investigated physical properties of the climate exhibited by the model in terms of humidity fluxes [?] as in terms of conservation properties [?].
 \p
 The initial data used from the HeRZ-reanalyses are in this work considered as free from systematic biases. With this assumption no errors can be found, that are not constrainable by measurements during data assimilation. 
+\pagebreak
 \section{Initial Tendency Method}
 \p
 Objective of the evaluation method used in this work is to evaluate the models without the use of additional measurements. This kind of evaluation has to verify intrinsic physical properties or the general behavior of the model.
@@ -125,11 +126,13 @@ Occasionally due to practical reasons some model tendencies $\dot{\Phi}_i$ to $\
 \p
 For some variables the model can be configured or adapted to add different tendency terms, that are normally are integrated, directly to the model output. This then allows for another way to compute $\dot{\Phi}_i$:
 \begin{equation}
-\dot{\Phi}_i=\sum_k \dot{\varphi}^M_k
+\dot{\Phi}_i+\dot{\Phi}^R=\sum_k \dot{\varphi}^M_k
 \end{equation}
 \p
-Here $\dot{\varphi}^M_k$ are the different model tendencies from the dynamics and physics of the NWP. It is important that all processes are included for this equation to hold.
+Here $\dot{\varphi}^M_k$ are the different model tendencies from the dynamics and physics of the NWP. It is important that all processes are included for this equation to hold.\\
+\includegraphics[scale=0.9]{./img/sketch3.png} 
 
+\pagebreak
 \section{COSMO Model}
 \p
 Strict licensing prohibits free use for commercial purposes.
@@ -195,8 +198,48 @@ a_{32}=R_1T\ln \frac{p^{31}}{p^{21}}
 H=\int_V \va{v_h}\ftimes\curl{\va{v_h}}
 \end{equation}
 \section{COSMO}
+\subsection{Physics Parameterizations}
+Gridscale Precip:\\
+4 Graupel scheme with prognostic cloud water, cloud ice, and graupel.
+
+Radiation: Grid- and sub-grid scale (including convective) water and ice clouds are considered; cloud cover, water content and ice content are calculated by the default diagnostic scheme.\\
+Coarser grid, every 50 timesteps (=15min)\\
+no topographic correction\\
+constant aerosol fields, surface albedo is determined by soil type\\
+
+Convection:\\
+Shallow convection based on Tiedtke scheme\\
+every 10 timesteps (=3min)\\
+Convection forcing fields are averaged before calling the scheme.\\
+No CAPE or TKE closure\\
+
+Vertical turbulent diffusion:\\
+Prognostic TKE-based scheme; includes effects from subgrid-scale condensation/evaporation.\\
+Neumann boundary conditions for heat and moisture transport at the lower boundary\\
+Grid- and sub-grid scale water clouds are considered\\
+No explicit corrections of implicitly calculated turbulent heat and moisture fluxes due to effects from subgrid-scale condensation\\
+No consideration of thermal TKE-source in enthalpy budget\\
+horizontal turbulent diffusion included\\
+calculate SSO-wake turbulence production for TKE\\
+don't consider convective buoyancy production for TKE\\
+Only vertical shear\\
+
+Surface Layer fluxes:\\
+TKE-based scheme including a laminar sub-layer\\
+Clouds are not considered for subgridscale condensation\\
+
+Soil Processes:\\
+Lake model FLake is not used\\
+Terra is run with 7 soil layers\\
+2 soil water layers\\
+no minimum stomata resistance map\\
+BATS is used for transpiration of vegetation and bare soil\\
+for heat conductivity an average soil moisture is used.\\
+
+No subgridscale orography is used\\
+
 \section{WRF}
-\subsection{Physics Parametrizations}
+\subsection{Physics Parameterizations}
 %\begin{table}
 \begin{tabular}{lr}
 Microphysics       & New Thompson et al incl. Graupel, rain number density\\

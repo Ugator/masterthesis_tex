@@ -1,0 +1,42 @@
+\chapter{Application}
+\begin{equation}
+\ddiff{x^2}{t}=\pdiff{x}{t}=\euler{x^2}
+\end{equation}
+\section{COSMO}
+\begin{figure}
+	\begin{tikzpicture}
+	
+	
+	\begin{axis}[
+	cycle list name=fcolor,
+	width=\textwidth,
+	extra x ticks       = 0,
+	extra x tick labels = ,
+	extra x tick style  = { grid = major },
+	xmin = -5,
+	title=Vertical Profile of Temperature Tendency,
+	xlabel={Tendency $\qty[\si{\kelvin\per\day}]$},
+	ylabel={Model Level Height $\qty[\si{\kilo\metre}]$},
+	legend entries= {all timesteps, first timestep},
+	legend pos=north east
+	]
+	\addplot+[smooth,
+	/pgfplots/table/y expr=\thisrowno{0}/1000,
+	/pgfplots/table/x index=1, 
+	/pgfplots/table/y index=0] 
+		table {./data/vert/T_ats_mean.csv};
+	\addplot+[smooth,
+	/pgfplots/table/y expr=\thisrowno{0}/1000,
+	/pgfplots/table/x index=1, 
+	/pgfplots/table/y index=0] 
+		table {./data/vert/T_fts_mean.csv};
+	\end{axis}
+	\end{tikzpicture}
+\caption{\emph{y axis:}\DescrHeightLevels \emph{x axis:} Tendency of the model Temperature. Using the first timestep only (teal) and the mean for all timesteps (blue). Values for the lowest and highest model levels are omitted and $<\SI{-20}{\kelvin\per\day}$.}
+\label{fig:COSMO_tend_T_vert}
+\end{figure}
+
+\section{WRF}
+\blindtext
+\chapter{Results}
+\Blindtext

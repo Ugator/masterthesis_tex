@@ -1,20 +1,164 @@
 \chapter{Application}
 \begin{equation}
-\ddiff{x^2}{t}=\pdiff{x}{t}=\euler{x^2}
+   \ddiff{x^2}{t}=\pdiff{x}{t}=\euler{x^2}
 \end{equation}
 \section{COSMO}
+\subsection{Lowest Model Levels}
+During first timestep: Too cold and dry in lowest level, too hot and moist in 2nd lowest level.\\
+All timesteps: Too hot and moist in lower \SI{1}{\kilo\meter}.
+Explanation: Convective scheme too active in lower atmosphere during Spin-Up. Transport of moisture and heat from ground up. Later double counting of dynamics and convective scheme at cloud base leads to too much enthalpy there. Dissipates to lower atmospheric levels.
+\begin{figure}
+   \begin{tikzpicture}
+      \begin{axis}[
+            cycle list name=fcolor,
+            width=\textwidth,
+            extra x ticks       = 0,
+            extra x tick labels = ,
+            extra x tick style  = { grid = major },
+            ymax = 12,
+            minor ytick=data,
+            xmin = -5,
+            title=Vertical Profile of Temperature Tendency,
+            xlabel={Tendency $\qty[\si{\kelvin\per\day}]$},
+            ylabel={Model Level Height $\qty[\si{\kilo\metre}]$},
+            legend entries= {all timesteps, first timestep},
+            legend pos=north east
+         ]
+         \addplot+[smooth,
+            /pgfplots/table/y expr=\thisrowno{0}/1000,
+            /pgfplots/table/x index=1, 
+         /pgfplots/table/y index=0] 
+         table {./data/vert/T_ats_mean.csv};
+         \addplot+[smooth,
+            /pgfplots/table/y expr=\thisrowno{0}/1000,
+            /pgfplots/table/x index=1, 
+         /pgfplots/table/y index=0] 
+         table {./data/vert/T_fts_mean.csv};
+      \end{axis}
+   \end{tikzpicture}
+   \caption{\emph{y axis:}\DescrHeightLevels \emph{x axis:} Tendency of the model Temperature. Using the first timestep only (\colB) and the mean for all timesteps (\colA). Values for the lowest and highest model levels are omitted and $<\SI{-20}{\kelvin\per\day}$.}
+   \label{fig:COSMO_tend_T_vert}
+\end{figure}
 
-\begin{tikzpicture}
-\begin{axis}[
-title=Tendency Temperature,
-xlabel=Tendency in K/s,
-ylabel=Model Level,
-]
-\addplot[blue] table {./data/vert/T_ats_mean.csv};
-\end{axis}
-\end{tikzpicture}
+\begin{figure}
+   \begin{tikzpicture}
+      \begin{axis}[
+            cycle list name=fcolor,
+            width=\textwidth,
+            extra x ticks       = 0,
+            extra x tick labels = ,
+            extra x tick style  = { grid = major },
+            minor ytick=data,
+            xmin = -15,
+            ymax = 12,
+            title=Vertical Profile of Entropy Temperature Tendency,
+            xlabel={Tendency $\qty[\si{\kelvin\per\day}]$},
+            ylabel={Model Level Height $\qty[\si{\kilo\metre}]$},
+            legend entries= {all timesteps, first timestep},
+            legend pos=north east
+         ]
+         \addplot+[smooth,
+            /pgfplots/table/y expr=\thisrowno{0}/1000,
+            /pgfplots/table/x index=1, 
+         /pgfplots/table/y index=0] 
+         table {./data/vert/T_ENTR_ats_mean.csv};
+         \addplot+[smooth,
+            /pgfplots/table/y expr=\thisrowno{0}/1000,
+            /pgfplots/table/x index=1, 
+         /pgfplots/table/y index=0] 
+         table {./data/vert/T_ENTR_fts_mean.csv};
+      \end{axis}
+   \end{tikzpicture}
+   \caption{\emph{y axis:}\DescrHeightLevels \emph{x axis:} Tendency of the model Entropy Temperature. Using the first timestep only (\colB) and the mean for all timesteps (\colA). Values for the lowest and highest model levels are omitted and $<\SI{-180}{\kelvin\per\day}$.}
+   \label{fig:COSMO_tend_T_vert}
+\end{figure}
 
 
+\begin{figure}
+   \begin{tikzpicture}
+      \begin{axis}[
+            cycle list name=fcolor,
+            width=\textwidth,
+            extra x ticks       = 0,
+            extra x tick labels = ,
+            extra x tick style  = { grid = major },
+            ymax=12,
+            minor ytick=data,
+            title=Vertical Profile of Physics Tendencies for Temperature,
+            xlabel={Tendency $\qty[\si{\kelvin\per\day}]$},
+            ylabel={Model Level Height $\qty[\si{\kilo\metre}]$},
+            legend entries= {Convective all, Latent Heat all, Convective first, Latent Heat first},
+            legend pos=north west
+         ]
+         \addplot+[smooth,
+            /pgfplots/table/y expr=\thisrowno{0}/1000,
+            /pgfplots/table/x expr=\thisrowno{1}+1.48756224767697,
+            /pgfplots/table/x index=1, 
+         	/pgfplots/table/y index=0]
+         table {./data/vert/DT_CON_ats_mean.csv};
+         \addplot+[smooth,
+            /pgfplots/table/y expr=\thisrowno{0}/1000,
+            /pgfplots/table/x expr=\thisrowno{1}+1.48756224767697,
+            /pgfplots/table/x index=1, 
+         	/pgfplots/table/y index=0]
+         table {./data/vert/TINC_LH_ats_mean.csv};
+         \addplot+[smooth,
+            /pgfplots/table/y expr=\thisrowno{0}/1000,
+            /pgfplots/table/x expr=\thisrowno{1}+1.50341580034503,
+            /pgfplots/table/x index=1, 
+         	/pgfplots/table/y index=0]
+         table {./data/vert/DT_CON_fts_mean.csv};
+         \addplot+[smooth,
+            /pgfplots/table/y expr=\thisrowno{0}/1000,
+            /pgfplots/table/x expr=\thisrowno{1}+1.50341580034503,
+            /pgfplots/table/x index=1, 
+         	/pgfplots/table/y index=0]
+         table {./data/vert/TINC_LH_fts_mean.csv};
+      \end{axis}
+   \end{tikzpicture}
+   \caption{bla}
+   \label{fig:COSMO_tend_physics_vert}
+\end{figure}
+
+
+
+\begin{figure}
+   \begin{tikzpicture}
+      \begin{axis}[
+            cycle list name=fcolor,
+            width=\textwidth,
+            xmin				= -0.002,
+            ymax				= 12,
+            extra x ticks       = 0,
+            extra x tick labels = ,
+            extra x tick style  = { grid = major },
+            minor ytick=data,
+            title=Vertical Profile of Humidity Tendency,
+            xlabel={Tendency $\qty[\si{\per\day}]$},
+            ylabel={Model Level Height $\qty[\si{\kilo\metre}]$},
+            legend entries= {all timesteps, first timestep},
+            legend pos=north east
+         ]
+         \addplot+[smooth,
+            /pgfplots/table/y expr=\thisrowno{0}/1000,
+            /pgfplots/table/x index=1, 
+         /pgfplots/table/y index=0] 
+         table {./data/vert/QV_ats_mean.csv};
+         \addplot+[smooth,
+            /pgfplots/table/y expr=\thisrowno{0}/1000,
+            /pgfplots/table/x index=1, 
+         /pgfplots/table/y index=0] 
+         table {./data/vert/QV_fts_mean.csv};
+      \end{axis}
+   \end{tikzpicture}
+   \caption{\emph{y axis:}\DescrHeightLevels \emph{x axis:} Tendency of the model Humidity (mixing ratio of water vapor). Using the first timestep only (\colB) and the mean for all timesteps (\colA). Values for the lowest model level are omitted and $<\SI{-1.5}{\percent\per\day}$. Values for the upper atmosphere (not shown) are very close to $0$.}
+   \label{fig:COSMO_tend_QV_vert}
+\end{figure}
+
+
+
+textwidth in cm: \printinunitsof{cm}\prntlen{\textwidth}
+textwidth in in: \printinunitsof{in}\prntlen{\textwidth}
 \section{WRF}
 \blindtext
 \chapter{Results}

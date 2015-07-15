@@ -16,6 +16,7 @@
 
 
 %use garamond Font
+
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
 \usepackage[urw-garamond]{mathdesign}
@@ -25,10 +26,10 @@
 \clubpenalty10000
 \widowpenalty10000
 %\usepackage{microtype}%for tuned kerning
-
+\usepackage{layouts}
 %Math stuff
 \usepackage{amsmath}
-\usepackage{pgfplots}
+%\usepackage{pgfplots}
 %Handy packages & Co
 \usepackage{color}
 \usepackage{blindtext}
@@ -40,6 +41,8 @@
 	\DeclareSIUnit\years{yrs}
 \usepackage{physics}
 
+
+\usepackage[x11names]{xcolor}
 %customize toc
 \setcounter{tocdepth}{1}
 \setcounter{secnumdepth}{2}
@@ -58,6 +61,10 @@
 
 \addbibresource{refs.bib}
 %Own Commands
+
+%Plot-texts
+\newcommand{\DescrHeightLevels}{ For the vertical profile model levels have been used. For each level the mean height is used. Full model levels are taken to be in the geometric mean height between half levels. }
+
 %\newcommand{\data}{./data}
 \newcommand{\Ri}{R\!i}
 \newcommand{\p}{\par}
@@ -66,9 +73,30 @@
 \newcommand{\pdiff}[2]{\ensuremath{\frac{\partial\! #1}{\partial\! #2}}}
 \newcommand{\euler}[1]{\ensuremath{\pdiff{#1}{t}+\left(\vec{v}\times\vec{\nabla}\right)#1}}
 
+
+
 %Begin pgfplot stuff
 \usepackage{pgfplots}
-%\pgfplotsset{compat=1.12}
+\pgfplotsset{compat=1.11}
+\pgfplotstableset{col sep=semicolon}
+\usepgfplotslibrary{units}
+\def\axisdefaultheight{120pt}
+\def\axisdefaultwidth{240pt}
+
+\newcommand{\colA}{green}
+\newcommand{\colB}{brown}
+\newcommand{\colC}{blue}
+\newcommand{\colD}{black}
+\newcommand{\colE}{orange}
+
+
+\pgfplotscreateplotcyclelist{fcolor}{%
+Green4,mark=none\\%
+Chocolate4\\%
+RoyalBlue3\\%
+black\\%
+OrangeRed1\\%
+}
 
 \begin{document}
 \pagenumbering{roman}
