@@ -97,18 +97,18 @@ By freezing on a specific model configuration and re-evaluation of free forecast
 There are different applications imaginable for utilizing reforecasts for model evaluation. [?] compared the model output to measurements and [?] investigated physical properties of the climate exhibited by the model in terms of humidity fluxes [?] as in terms of conservation properties [?].
 \p
 The initial data used from the HeRZ-reanalyses are in this work considered as free from systematic biases. With this assumption no errors can be found, that are not constrainable by measurements during data assimilation. 
+
+%\p
+%Objective of the evaluation method used in this work is to evaluate the models without the use of additional measurements. This kind of evaluation has to verify intrinsic physical properties or the general behavior of the model.
+%\p
+%Under the assumption of a stationary climate one can assume, that statistically all variables have to be constant. This is expectably true for extensive or intensive variables.
+%\p
+%The time scales for which different variables in the climate system are quasi constant can become very large. Also variables that vary with the diurnal cycle would cause problems, if the diurnal cycle isn't resolved by the model starting times. If the model is for example only started at the local morning, the tendencies for temperature would always be positive whereas this doesn't point to erroneous behavior of the model. It is important to note that the diurnal cycle might not be resolved by a 6-horal sampling.
+%\p
+%Due to this for this evaluation known tendencies of all variables will be subtracted before averaging. To determine the known tendencies the reanalysis from which the model is started are used to calculate the real background tendencies.
+%\p
 \pagebreak
 \section{Initial Tendency Method}
-\p
-Objective of the evaluation method used in this work is to evaluate the models without the use of additional measurements. This kind of evaluation has to verify intrinsic physical properties or the general behavior of the model.
-\p
-Under the assumption of a stationary climate one can assume, that statistically all variables have to be constant. This is expectably true for extensive or intensive variables.
-\p
-The time scales for which different variables in the climate system are quasi constant can become very large. Also variables that vary with the diurnal cycle would cause problems, if the diurnal cycle isn't resolved by the model starting times. If the model is for example only started at the local morning, the tendencies for temperature would always be positive whereas this doesn't point to erroneous behavior of the model. It is important to note that the diurnal cycle might not be resolved by a 6-horal sampling.
-\p
-Due to this for this evaluation known tendencies of all variables will be subtracted before averaging. To determine the known tendencies the reanalysis from which the model is started are used to calculate the real background tendencies.
-\p
-
 For a Variable $\Phi$ let $\Phi^R_0$ be the reanalysis field from which the model is started and $\Phi^R_1$ the next reanalysis field available after a time of $\Delta T$.
 \p
  The forecast field for $t$ seconds after $\Phi^R_0$ is denoted $\Phi^M(t)$. The model time step numbered $0\leq i\leq n \in \mathbb{N}$ is $\Delta t$ seconds. Therefore model fields are available for $t=i\Delta t$ and called $\Phi^M_i$.

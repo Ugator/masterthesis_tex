@@ -1,0 +1,118 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.4 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{nty}{nty}
+    \entry{grandy2004time}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=c76520f0f52100ec2f94c2f5dfb5d04f}{Grandy\bibnamedelima Jr}{G\bibinitperiod\bibinitdelim J\bibinitperiod}{WT}{W\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=c76520f0f52100ec2f94c2f5dfb5d04f}{Grandy\bibnamedelima Jr}{G\bibinitperiod\bibinitdelim J\bibinitperiod}{WT}{W\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{c76520f0f52100ec2f94c2f5dfb5d04f}
+      \strng{fullhash}{c76520f0f52100ec2f94c2f5dfb5d04f}
+      \field{sortinit}{G}
+      \field{sortinithash}{480ee01f9ffd559b3258d822f54a8ac2}
+      \field{labeltitle}{Time evolution in macroscopic systems. II. The entropy}
+      \field{journaltitle}{Foundations of Physics}
+      \field{number}{1}
+      \field{title}{Time evolution in macroscopic systems. II. The entropy}
+      \field{volume}{34}
+      \field{year}{2004}
+      \field{pages}{21\bibrangedash 57}
+    \endentry
+    \entry{judd2008geometry}{article}{}
+      \name{labelname}{4}{}{%
+        {{hash=503a8b511e6651e351fba16f5bef1c19}{Judd}{J\bibinitperiod}{Kevin}{K\bibinitperiod}{}{}{}{}}%
+        {{hash=066255095ca7656755043deb51cf9b37}{Reynolds}{R\bibinitperiod}{Carolyn\bibnamedelima A}{C\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+        {{hash=562d62837609f5c7419a0d7c2132aa77}{Rosmond}{R\bibinitperiod}{Thomas\bibnamedelima E}{T\bibinitperiod\bibinitdelim E\bibinitperiod}{}{}{}{}}%
+        {{hash=fdd406a52bfd7a27e84e3b34da170afe}{Smith}{S\bibinitperiod}{Leonard\bibnamedelima A}{L\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{4}{}{%
+        {{hash=503a8b511e6651e351fba16f5bef1c19}{Judd}{J\bibinitperiod}{Kevin}{K\bibinitperiod}{}{}{}{}}%
+        {{hash=066255095ca7656755043deb51cf9b37}{Reynolds}{R\bibinitperiod}{Carolyn\bibnamedelima A}{C\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+        {{hash=562d62837609f5c7419a0d7c2132aa77}{Rosmond}{R\bibinitperiod}{Thomas\bibnamedelima E}{T\bibinitperiod\bibinitdelim E\bibinitperiod}{}{}{}{}}%
+        {{hash=fdd406a52bfd7a27e84e3b34da170afe}{Smith}{S\bibinitperiod}{Leonard\bibnamedelima A}{L\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{e9d0913c07fd513b064247d6ca638346}
+      \strng{fullhash}{75a7b029883a4433ad8304aee0316ee8}
+      \field{sortinit}{J}
+      \field{sortinithash}{f75b22df8c340a961dce37019e29107f}
+      \field{labeltitle}{The geometry of model error}
+      \field{journaltitle}{Journal of the atmospheric sciences}
+      \field{number}{6}
+      \field{title}{The geometry of model error}
+      \field{volume}{65}
+      \field{year}{2008}
+      \field{pages}{1749\bibrangedash 1772}
+    \endentry
+    \entry{cosmo_da}{article}{}
+      \name{labelname}{2}{}{%
+        {{hash=f930ed3b5249bd13ffb0280155d8dc15}{Schraff}{S\bibinitperiod}{C.}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=b8f0829d951a7bc30e63a34462c4f4a2}{Hess}{H\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=f930ed3b5249bd13ffb0280155d8dc15}{Schraff}{S\bibinitperiod}{C.}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=b8f0829d951a7bc30e63a34462c4f4a2}{Hess}{H\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {DWD}%
+      }
+      \strng{namehash}{be15c5a0edd87c3aba7150b483eacbfc}
+      \strng{fullhash}{be15c5a0edd87c3aba7150b483eacbfc}
+      \field{sortinit}{S}
+      \field{sortinithash}{4125bb4c3a0eb3eaee3ea6da32eb70c8}
+      \field{labeltitle}{COSMO Documentation Part III: Data Assimilation}
+      \field{journaltitle}{Foundations of Physics}
+      \field{title}{COSMO Documentation Part III: Data Assimilation}
+    \endentry
+    \entry{smith1999uncertainty}{article}{}
+      \name{labelname}{3}{}{%
+        {{hash=fdd406a52bfd7a27e84e3b34da170afe}{Smith}{S\bibinitperiod}{Leonard\bibnamedelima A}{L\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+        {{hash=b812678c533a8c39fd1e0c86ed3a48a9}{Ziehmann}{Z\bibinitperiod}{C}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=a8da9c27c5ff5d454dfa2be5b3a9a25c}{Fraedrich}{F\bibinitperiod}{K}{K\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=fdd406a52bfd7a27e84e3b34da170afe}{Smith}{S\bibinitperiod}{Leonard\bibnamedelima A}{L\bibinitperiod\bibinitdelim A\bibinitperiod}{}{}{}{}}%
+        {{hash=b812678c533a8c39fd1e0c86ed3a48a9}{Ziehmann}{Z\bibinitperiod}{C}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=a8da9c27c5ff5d454dfa2be5b3a9a25c}{Fraedrich}{F\bibinitperiod}{K}{K\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{049270a07aacce4614ac3856e86fd08c}
+      \strng{fullhash}{049270a07aacce4614ac3856e86fd08c}
+      \field{sortinit}{S}
+      \field{sortinithash}{4125bb4c3a0eb3eaee3ea6da32eb70c8}
+      \field{labeltitle}{Uncertainty dynamics and predictability in chaotic systems}
+      \field{journaltitle}{Quarterly Journal of the Royal Meteorological Society}
+      \field{number}{560}
+      \field{title}{Uncertainty dynamics and predictability in chaotic systems}
+      \field{volume}{125}
+      \field{year}{1999}
+      \field{pages}{2855\bibrangedash 2886}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

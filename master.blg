@@ -1,0 +1,15 @@
+[0] Config.pm:321> INFO - This is Biber 1.9
+[0] Config.pm:324> INFO - Logfile is 'master.blg'
+[34] biber:277> INFO - === Mi Jul 15, 2015, 10:38:46
+[34] Biber.pm:334> INFO - Reading 'master.bcf'
+[115] Biber.pm:636> INFO - Found 4 citekeys in bib section 0
+[135] Biber.pm:3052> INFO - Processing section 0
+[157] Biber.pm:3190> INFO - Looking for bibtex format file 'refs.bib' for section 0
+[158] bibtex.pm:979> INFO - Decoding LaTeX character macros into UTF-8
+[158] bibtex.pm:853> INFO - Found BibTeX data source 'refs.bib'
+[219] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[219] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[219] Biber.pm:2929> INFO - Sorting list 'nty' of type 'entry' with scheme 'nty' and locale 'en-US'
+[219] Biber.pm:2933> INFO - No sort tailoring available for locale 'en-US'
+[228] bbl.pm:517> INFO - Writing 'master.bbl' with encoding 'UTF-8'
+[229] bbl.pm:606> INFO - Output to master.bbl

@@ -1,0 +1,42 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {english}
+\select@language {ngerman}
+\select@language {english}
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Theory}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Numerical Weather Prediction Model}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Data Assimilation}{1}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Observation Nudging (COSMO)}{2}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Ensemble Kalman Filter (WRF)}{3}{subsection.1.2.2}
+\contentsline {section}{\numberline {1.3}Model Error}{4}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Initialisation Error}{4}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Spin Up Error}{4}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}Tendency Error}{5}{subsection.1.3.3}
+\contentsline {section}{\numberline {1.4}Reforecasts}{5}{section.1.4}
+\contentsline {section}{\numberline {1.5}Initial Tendency Method}{7}{section.1.5}
+\contentsline {section}{\numberline {1.6}COSMO Model}{9}{section.1.6}
+\contentsline {subsection}{\numberline {1.6.1}Coordinate System}{9}{subsection.1.6.1}
+\contentsline {subsubsection}{\nonumberline Horizontal}{9}{section*.2}
+\contentsline {subsubsection}{\nonumberline Vertical}{9}{section*.3}
+\contentsline {subsection}{\numberline {1.6.2}Sound Waves}{9}{subsection.1.6.2}
+\contentsline {section}{\numberline {1.7}WRF Model}{9}{section.1.7}
+\contentsline {subsection}{\numberline {1.7.1}Coordinate System}{9}{subsection.1.7.1}
+\contentsline {subsubsection}{\nonumberline Horizontal}{9}{section*.4}
+\contentsline {subsubsection}{\nonumberline Vertical}{9}{section*.5}
+\contentsline {subsection}{\numberline {1.7.2}Sound Waves}{10}{subsection.1.7.2}
+\contentsline {chapter}{\numberline {2}Methodology}{11}{chapter.2}
+\contentsline {section}{\numberline {2.1}Entropy Production}{11}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Entropy Temperature}{11}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Entropy Production}{11}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Richardson Number}{11}{section.2.2}
+\contentsline {section}{\numberline {2.3}Helicity}{12}{section.2.3}
+\contentsline {section}{\numberline {2.4}COSMO}{12}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Physics Parameterizations}{12}{subsection.2.4.1}
+\contentsline {section}{\numberline {2.5}WRF}{13}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Physics Parameterizations}{13}{subsection.2.5.1}
+\contentsline {chapter}{\numberline {3}Application}{14}{chapter.3}
+\contentsline {section}{\numberline {3.1}COSMO}{14}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Lowest Model Levels}{14}{subsection.3.1.1}
+\contentsline {section}{\numberline {3.2}WRF}{14}{section.3.2}
+\contentsline {chapter}{\numberline {4}Results}{18}{chapter.4}
