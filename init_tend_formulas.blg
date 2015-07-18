@@ -1,9 +1,9 @@
 [0] Config.pm:321> INFO - This is Biber 1.9
-[0] Config.pm:324> INFO - Logfile is 'init_tend_formulas.blg'
-[34] biber:277> INFO - === Mi Jul 15, 2015, 11:07:31
-[34] Biber.pm:334> INFO - Reading 'init_tend_formulas.bcf'
-[116] Biber.pm:636> INFO - Found 0 citekeys in bib section 0
-[116] Utils.pm:144> WARN - The file 'init_tend_formulas.bcf' does not contain any citations!
-[136] bbl.pm:517> INFO - Writing 'init_tend_formulas.bbl' with encoding 'UTF-8'
-[136] bbl.pm:606> INFO - Output to init_tend_formulas.bbl
-[136] Biber.pm:107> INFO - WARNINGS: 1
+[1] Config.pm:324> INFO - Logfile is 'init_tend_formulas.blg'
+[53] biber:277> INFO - === Mi Jul 15, 2015, 11:45:28
+[54] Biber.pm:334> INFO - Reading 'init_tend_formulas.bcf'
+[184] Biber.pm:636> INFO - Found 0 citekeys in bib section 0
+[185] Utils.pm:144> WARN - The file 'init_tend_formulas.bcf' does not contain any citations!
+[215] bbl.pm:517> INFO - Writing 'init_tend_formulas.bbl' with encoding 'UTF-8'
+[215] bbl.pm:606> INFO - Output to init_tend_formulas.bbl
+[215] Biber.pm:107> INFO - WARNINGS: 1
